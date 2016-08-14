@@ -1,0 +1,25 @@
+services:
+    awaresoft.admin.listener.locale:
+        class: Awaresoft\Sonata\AdminBundle\EventListener\LocaleListener
+        arguments: ["%kernel.default_locale%"]
+        tags:
+          - { name: kernel.event_subscriber }
+
+    awaresoft.admin.listener.login_success_handler:
+        parent: security.authentication.success_handler
+        class:  Awaresoft\Sonata\AdminBundle\EventListener\LoginSuccessHandler
+
+    awaresoft.admin.form.extension.field:
+        class: Awaresoft\Sonata\AdminBundle\Form\Extension\Field\Type\FormTypeFieldExtension
+        tags:
+            - { name: form.type_extension, alias: form }
+        arguments:
+            - []
+            - []
+            - @doctrine.orm.entity_manager
+            - @stof_doctrine_extensions.listener.translatable
+
+    awaresoft.admin.reference.factory:
+        class: Awaresoft\Sonata\AdminBundle\Reference\ReferenceFactory
+        arguments:
+            - @service_container

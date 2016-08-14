@@ -1,0 +1,67 @@
+#awaresoft-admin-bar {
+    border-radius: 0;
+    background: #262B30;
+    border: 0;
+    margin-bottom: 5px;
+}
+
+#awaresoft-admin-bar.sonata-bc .container {
+}
+
+#awaresoft-admin-bar .navbar-brand {
+    padding: 3px 15px 3px 30px;
+}
+
+#awaresoft-admin-bar .navbar-header {
+    background: #fff;
+}
+
+#awaresoft-admin-bar .navbar-nav a:hover,
+#awaresoft-admin-bar .navbar-nav li.open > a {
+    background: #C51C30;
+    color: #fff;
+}
+
+@media (max-width: 767px) {
+    #awaresoft-admin-bar .navbar-toggle {
+        background: #333;
+    }
+
+    #awaresoft-admin-bar .navbar-collapse.collapse {
+        position: relative;
+        background: #fff;
+        z-index: 10;
+        border: 0;
+    }
+
+    #awaresoft-admin-bar .navbar-collapse.collapsing {
+        border: 0;
+    }
+
+    #awaresoft-admin-bar .navbar-nav > li:not(.open) a:focus:not(:hover) {
+        color: #C51C30;
+    }
+}
+
+#awaresoft-admin-bar .live-edit {
+    margin-top: 8px;
+    margin-left: 10px;
+}
+
+#awaresoft-admin-bar .live-edit input[type=checkbox] {
+    margin-right: 5px;
+    vertical-align: -1px;
+}
+
+#awaresoft-admin-bar .btn-aware {
+    background: #C51C30;
+    color: #ffffff;
+}
+
+#awaresoft-admin-bar label {
+    cursor: pointer;
+}
+
+#awaresoft-admin-bar .live-edit .btn-aware {
+    margin-left: 5px;
+}

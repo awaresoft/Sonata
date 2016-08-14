@@ -1,0 +1,8 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+    {% set objects = json_decode(attribute(object, field_description.name), true) %}
+    {% for key, object in objects %}
+        <p>{{ key }}: {{ object }}</p>
+    {% endfor %}
+{% endblock %}

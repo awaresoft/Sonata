@@ -1,0 +1,13 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+
+{% block field %}
+    {% set object = json_decode(value, true) %}
+    {% for key, obj in object %}
+        {% if obj is not iterable %}
+            <div>{{ key }}: {{ obj }}</div>
+        {% else %}
+            <div>{{ key }}: {{ obj |length }}</div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

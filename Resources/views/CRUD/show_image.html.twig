@@ -1,0 +1,7 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field%}
+    {%- if value is not empty -%}
+        <a  href="{{ path('admin_sonata_media_media_edit', { 'id': object.media.id }) }}">{% thumbnail attribute(object, field_description.name ), 'admin' with {'width': 75, 'height': 60} %}</a>
+    {%- endif -%}
+{% endblock %}

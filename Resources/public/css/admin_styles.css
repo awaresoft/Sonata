@@ -1,0 +1,123 @@
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+.form-control[type=file] {
+    border: 0 solid;
+    padding: 0;
+}
+
+.logo {
+    background: #c51c30 !important;
+}
+
+.logo span {
+    color: #fff;
+}
+
+.sidebar {
+    background: #262b30 !important;
+    border-right: 1px solid #ECF0F5;
+}
+
+.sidebar-collapse .sidebar {
+    border-right: none;
+}
+
+#awaresoft-login {
+    background: #c51c30;
+}
+
+#awaresoft-login .sf-toolbar {
+    background: #c51c30;
+}
+
+#awaresoft-login .wrapper {
+    background: #c51c30;
+}
+
+#awaresoft-login .login-box-body.login-logo {
+    margin-bottom: 2px;
+}
+
+.clear-right {
+    clear: right;
+}
+
+.clear-left {
+    clear: left;
+}
+
+.box-locale-switcher {
+    padding: 12px 12px 15px;
+    text-align: right;
+}
+
+.locale_switcher a {
+    margin-right: 5px;
+}
+
+input[for="*_all_elements"] {
+    display: none;
+}
+
+.page-seo__information {
+    float: right;
+    margin-right: 30px;
+}
+
+.page-seo__information > div {
+    margin-right: 5px;
+}
+
+.input-group .input-group-addon {
+    background: #eee;
+}
+
+.image-container .noimage {
+    position: relative;
+    background: #eee;
+    text-align: center;
+}
+
+.image-container .noimage img {
+    margin: 5px 0;
+}
+
+.image-container .noimage .fa {
+    font-size: 50px;
+    margin: 26px;
+    color: #777;
+}
+
+.image-container h4 {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.image-container .control-label {
+    display: none;
+}
+
+.sonata-tree__item__flag {
+    margin-top: -2px;
+}
+
+.sonata-tree__item__position {
+    display: inline-block;
+    float: right;
+    margin-left: 8px;
+}
+
+.sonata-tree__item .label {
+    margin-left: 8px;
+}
+
+.sonata-tree {
+    margin-top: 10px;
+}
+
+.sonata-tree--toggleable li > ul {
+    display: block;
+}

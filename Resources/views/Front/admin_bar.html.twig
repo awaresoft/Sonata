@@ -1,0 +1,131 @@
+{% block admin_bar %}
+    {% if sonata_page.isEditor or is_granted('ROLE_PREVIOUS_ADMIN') %}
+
+        {% if sonata_page.isEditor and sonata_page.isInlineEditionOn %}
+            <script>
+                jQuery(document).ready(function () {
+                    Sonata.Page.init({
+                        url: {
+                            block_save_position: '{{ path('admin_sonata_page_block_savePosition', { 'id': sonata_page.cmsManager.currentPage }) }}',
+                            block_edit: '{{ path('admin_sonata_page_block_edit', {'id': 'BLOCK_ID'}) }}'
+                        }
+                    });
+                });
+            </script>
+        {% endif %}
+
+        <div id="awaresoft-admin-bar" class="sonata-page-top-bar navbar navbar-inverse" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#admin-navbar-collapse" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ path('sonata_admin_dashboard') }}">
+                        <img src="{{ asset('bundles/awaresoftsonataadmin/images/aware_logo_navbar.png') }}" alt="Awaresoft CMS"/>
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="admin-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        {% if is_granted('ROLE_SONATA_ADMIN') %}
+                            <li>
+                                <a href="{{ path('sonata_admin_dashboard') }}">{{ "header.sonata_admin_dashboard"|trans({}, 'SonataPageBundle') }}</a>
+                            </li>
+                        {% endif %}
+
+                        {% if sonata_page.isEditor and sonata_page.cmsManager.currentPage.id is defined %}
+                            {% set sites = sonata_page.siteavailables %}
+
+                            {% if sites|length > 1 and site is defined %}
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        {{ site.name }}
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        {% for site in sites %}
+                                            <li><a href="{{ app.request.baseUrl }}{{ site.url }}">{{ site.name }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    {{ "page"|trans({}, 'SonataPageBundle') }}
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{ path('admin_awaresoft_cms_edit', {'id': sonata_page.cmsManager.currentPage.id }) }}" target="_new">{{ "header.edit_page"|trans({}, 'SonataPageBundle') }}</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('admin_awaresoft_cms_snapshot_create', {'pageId': sonata_page.cmsManager.currentPage.id }) }}" target="_new">{{ "header.create_snapshot"|trans({}, 'SonataPageBundle') }}</a>
+                                    </li>
+                                    <li class="divider hidden-xs"></li>
+
+                                    <li>
+                                        <a href="{{ path('admin_awaresoft_cms_list') }}" target="_new">{{ "header.view_all_pages"|trans({}, 'SonataPageBundle') }}</a>
+                                    </li>
+                                    <li class="divider hidden-xs"></li>
+                                    <li>
+                                        <a href="{{ path('sonata_page_exceptions_list') }}" target="_new">{{ "header.view_all_exceptions"|trans({}, 'SonataPageBundle') }}</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="{{ url('admin_awaresoft_cms_compose', {'id': sonata_page.cmsManager.currentPage.id}) }}">
+                                    <i class="fa fa-magic"></i>
+                                    {{ 'header.compose_page'|trans({}, 'SonataPageBundle') }}
+                                </a>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Admin
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    {% if page is defined and is_granted('ROLE_PREVIOUS_ADMIN') %}
+                                        <li>
+                                            <a href="{{ path('homepage', {'_switch_user': '_exit'}) }}">{{ "admin.switch_user_exit" |trans }}</a>
+                                        </li>
+                                    {% endif %}
+                                    <li>
+                                        <a href="{{ url('sonata_user_admin_security_logout') }}">{{ "logout"|trans }}</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            {% if not sonata_page.cmsManager.currentPage.enabled %}
+                                <li>
+                                    <span style="padding-left: 20px; background: red;"><strong><em>{{ 'header.page_is_disabled'|trans([], 'SonataPageBundle') }}</em></strong></span>
+                                </li>
+                            {% endif %}
+
+                            {% if sonata_page.isInlineEditionOn and is_granted("ROLE_SUPER_ADMIN") %}
+                                <li class="hidden-xs hidden-sm">
+                                    <form class="live-edit form-inline">
+                                        <label class="checkbox inline" for="page-action-enabled-edit"><input type="checkbox" id="page-action-enabled-edit"/>{{ 'header.show_zone'|trans({}, 'SonataPageBundle') }}
+                                        </label>
+                                        <input type="submit" class="btn btn-aware" value="{{ 'btn_save_position'|trans({}, 'SonataPageBundle') }}" id="page-action-save-position"/>
+                                    </form>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        {% set isMaintenance = settings.get('MAINTENANCE').enabled %}
+        {% if isMaintenance %}
+            <div style="background: #db0000; color: #fff; padding: 10px; text-align: center;">{{ 'maintenance_is_enabled' |trans }}</div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

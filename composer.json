@@ -1,0 +1,11 @@
+{
+    "name": "awaresoft/SonataAdminBundle",
+    "type": "symfony-bundle",
+    "description": "Symfony Awaresoft SonataAdminBundle",
+    "require": {
+        "php": ">= 7",
+        "symfony/symfony": "2.*"
+    },"autoload": {
+    "psr-4": { "Awaresoft\\SonataAdminBundle\\": "" }
+}
+}

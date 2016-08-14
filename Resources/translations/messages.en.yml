@@ -1,0 +1,52 @@
+admin:
+    admin:
+        go_to_homepage: Go to site homepage
+        choose_site: Choose site
+        change_language: Change language
+        edit_profile: Edit profile
+        cannot_delete_item_is_blocked: You can not delete elements blocked before removing.
+        flash_batch_delete_unavailable: Deleting of many records is unavailable in this module.
+        form:
+            group:
+                main: Main
+                optional: Optional
+                content: Content
+                advanced: Advanced
+                media: Media
+                seo: SEO
+                fields: Fields
+                status: Status
+                file: File
+                files: Files
+                thumbnail: Thumbnail
+                url: Url
+                statistics: Statistics
+                classification: Classification
+                items: Items
+                tags: Tags
+                logo: Logotype
+        label:
+            redirect_to_page: Redirect to page
+            type_yes: Yes
+            type_no: No
+            image: Image
+            bg_color: Background color
+            text_color: Text color
+        help:
+            meta_title: Title should not be longer then 70 chars.
+            meta_description: Description should not be longer then 160 chars.
+            sluggable_field: This field will be automatically converted after saving the changes.
+            only_for_admins: This field should be use only by advanced user (developers).
+            url_page_or_plaintext: URL is automatically generated from selected page (if selected) or manually, if you fill "External url" field
+            tags: If you want to add new tags, open module Classifications -> Tags.
+            media_info: Check unlink field, if you want to unlink this media.
+        menu:
+            cms: CMS
+        field:
+            translatable: This field shoulb be translate
+        delete:
+            error:
+                more_then_x_relations: Results are hide, because we found more than 5 objects' relations, %url%
+                more_then_x_relations_url: go to list of this objects
+        enabled: Enabled
+        disabled: Disabled

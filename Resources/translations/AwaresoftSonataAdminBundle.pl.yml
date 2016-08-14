@@ -1,0 +1,7 @@
+admin:
+    admin:
+        menu_group_site_builder: Budowa strony
+        menu_group_content: Treść
+        reference:
+            title: Obiekt %url% połączony jest z innymi elementami w systemie i nie może zostać usunięty
+all: Wszystkie

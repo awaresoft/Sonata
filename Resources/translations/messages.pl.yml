@@ -1,0 +1,52 @@
+admin:
+    admin:
+        go_to_homepage: Przejdź do strony głównej
+        choose_site: Wybierz stronę
+        change_language: Zmień język
+        edit_profile: Edytuj profil
+        cannot_delete_item_is_blocked: Nie możesz usunąć elementów, które są zabezpieczone przed usunięciem.
+        flash_batch_delete_unavailable: Usuwanie wielu rekordów jest zablokowane w tym module.
+        form:
+            group:
+                main: Główne
+                optional: Opcjonalne
+                content: Treść
+                advanced: Zaawansowane
+                media: Multimedia
+                seo: SEO
+                fields: Pola
+                status: Status
+                file: Plik
+                files: Pliki
+                thumbnail: Miniatura
+                url: Adres URL
+                statistics: Statystyki
+                classification: Klasyfikacja
+                items: Przedmioty
+                tags: Tagi
+                logo: Logotyp
+        label:
+            redirect_to_page: Przekieruj do strony
+            type_yes: Tak
+            type_no: Nie
+            image: Zdjęcie
+            bg_color: Kolor tła
+            text_color: Kolor tekstu
+        help:
+            meta_title: Tytuł nie powinien być dłuższy niż 70 znaków.
+            meta_description: Opis nie powinien być dłuższy niż 160 znaków.
+            sluggable_field: To pole zostanie przekonwertowane automatycznie po zapisaniu zmian.
+            only_for_admins: To pole powinno być używane tylko przez zaawansowanych użytkowników (programistów).
+            url_page_or_plaintext: Adres URL jest generowany automatycznie jeżeli zostanie wybrana strona, lub ręcznie kiedy zostanie uzupełnione pole adres zewnętrzny.
+            tags: Jeżeli chcesz dodać nowy tag, przejdź do modułu Klasyfikacja -> Tagi.
+            media_info: Zaznacz pole "odłącz", jeśli chcesz odłączyć zdjęcie.
+        menu:
+            cms: CMS
+        field:
+            translatable: To pole powinno zostać przetłumaczone
+        delete:
+            error:
+                more_then_x_relations: Ukryliśmy wyniki, poniważ obiektów jest więcej niż 5, %url%
+                more_then_x_relations_url: przejdź do listy tych obiektów
+        enabled: Aktywny
+        disabled: Niektywny

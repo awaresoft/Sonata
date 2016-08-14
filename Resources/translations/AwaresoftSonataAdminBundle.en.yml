@@ -1,0 +1,7 @@
+admin:
+    admin:
+        menu_group_site_builder: Site Builder
+        menu_group_content: Content
+        reference:
+            title: Object %url% is connect with other elements of the system and can not be erase
+all: All
