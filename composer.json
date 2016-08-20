@@ -1,5 +1,5 @@
 {
-    "name": "awaresoft/SonataAdminBundle",
+    "name": "awaresoft/sonata-admin-bundle",
     "type": "symfony-bundle",
     "description": "Symfony Awaresoft SonataAdminBundle",
     "require": {
