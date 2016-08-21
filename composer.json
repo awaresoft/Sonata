@@ -5,7 +5,10 @@
     "require": {
         "php": ">= 7",
         "symfony/symfony": "2.*"
-    },"autoload": {
-    "psr-4": { "Awaresoft\\SonataAdminBundle\\": "" }
-}
+    },
+    "autoload": {
+        "psr-4": {
+            "Awaresoft\\Sonata\\AdminBundle\\": ""
+        }
+    }
 }
