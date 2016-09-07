@@ -64,7 +64,7 @@
                                         <a href="{{ path('admin_awaresoft_cms_edit', {'id': sonata_page.cmsManager.currentPage.id }) }}" target="_new">{{ "header.edit_page"|trans({}, 'SonataPageBundle') }}</a>
                                     </li>
                                     <li>
-                                        <a href="{{ path('admin_awaresoft_cms_snapshot_create', {'pageId': sonata_page.cmsManager.currentPage.id }) }}" target="_new">{{ "header.create_snapshot"|trans({}, 'SonataPageBundle') }}</a>
+                                        <a href="{{ path('admin_awaresoft_cms_admin_awaresoft_cms_snapshot_create', {'id': sonata_page.cmsManager.currentPage.id }) }}" target="_new">{{ "header.create_snapshot"|trans({}, 'SonataPageBundle') }}</a>
                                     </li>
                                     <li class="divider hidden-xs"></li>
 
@@ -104,7 +104,7 @@
 
                             {% if not sonata_page.cmsManager.currentPage.enabled %}
                                 <li>
-                                    <span style="padding-left: 20px; background: red;"><strong><em>{{ 'header.page_is_disabled'|trans([], 'SonataPageBundle') }}</em></strong></span>
+                                    <span class="site-disabled"><strong><em>{{ 'header.page_is_disabled'|trans([], 'SonataPageBundle') }}</em></strong></span>
                                 </li>
                             {% endif %}
 
