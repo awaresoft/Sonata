@@ -13,6 +13,7 @@ class LanguageController extends Controller
      * @Route("change/{locale}", name="sonata_admin_language_change")
      * @param Request $request
      * @param $locale
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function changeAction(Request $request, $locale)
@@ -30,14 +31,7 @@ class LanguageController extends Controller
         $request->getSession()->set('_locale', $locale);
         $request->setLocale($locale);
 
-        if ($siteSelector instanceof HostPathByLocaleSiteSelector) {
-            return $this->redirect(
-                $request->getBaseUrl() .
-                $site->getRelativePath() . '/admin'
-            );
-        }
-
-        return $this->redirectToRoute('sonata_admin_dashboard');
+        return $this->redirect($siteSelector->getRequestContext()->getBaseUrl() . $request->headers->get('referer'));
     }
 
 }
