@@ -4,7 +4,8 @@
     "description": "Symfony Awaresoft SonataAdminBundle",
     "require": {
         "php": ">= 7",
-        "symfony/symfony": "2.*"
+        "symfony/symfony": "2.*",
+        "stof/doctrine-extensions-bundle": "v1.2.*"
     },
     "autoload": {
         "psr-4": {
