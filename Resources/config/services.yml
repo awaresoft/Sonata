@@ -12,14 +12,14 @@ services:
     awaresoft.admin.form.extension.field:
         class: Awaresoft\Sonata\AdminBundle\Form\Extension\Field\Type\FormTypeFieldExtension
         tags:
-            - { name: form.type_extension, alias: form }
+            - { name: form.type_extension, extended_type: Sonata\AdminBundle\Form\Extension\Field\Type\FormTypeFieldExtension }
         arguments:
             - []
             - []
-            - @doctrine.orm.entity_manager
-            - @stof_doctrine_extensions.listener.translatable
+            - "@doctrine.orm.entity_manager"
+            - "@stof_doctrine_extensions.listener.translatable"
 
     awaresoft.admin.reference.factory:
         class: Awaresoft\Sonata\AdminBundle\Reference\ReferenceFactory
         arguments:
-            - @service_container
+            - "@service_container"

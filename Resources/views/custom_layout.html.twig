@@ -1,0 +1,50 @@
+{% extends '@SonataAdmin/standard_layout.html.twig' %}
+
+{% block sonata_top_nav_menu %}
+    <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="{{ app.request.baseUrl }}">
+                    <i class="fa fa-globe" title="{{ 'admin.admin.go_to_homepage'|trans }}"></i>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-language"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    {% for locale in admin_locales %}
+                        <li>
+                            <a href="{{ path('sonata_admin_language_change', { 'locale': locale }) }}">
+                                <img src="{{ asset('bundles/sonatatranslation/img/flags/' ~ locale ~ '.png') }}" alt="{{ locale }}"/>
+                                {{ locale }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% block sonata_top_nav_menu_add_block %}
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-plus-square fa-fw" aria-hidden="true"></i> <i class="fa fa-caret-down" aria-hidden="true"></i>
+                    </a>
+                    {% include sonata_admin.adminPool.getTemplate('add_block') %}
+                </li>
+            {% endblock %}
+            {% block sonata_top_nav_menu_user_block %}
+                <li class="dropdown user-menu">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw" aria-hidden="true"></i> <i class="fa fa-caret-down" aria-hidden="true"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        {% include sonata_admin.adminPool.getTemplate('user_block') %}
+                    </ul>
+                </li>
+            {% endblock %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block side_bar_after_nav_content %}
+    <a href="http://awaresoft.pl" rel="noreferrer" target="_blank">Awaresoft CMS &#9426;</a>
+{% endblock %}
