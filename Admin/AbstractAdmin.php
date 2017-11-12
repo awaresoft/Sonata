@@ -4,9 +4,9 @@ namespace Awaresoft\Sonata\AdminBundle\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin as BaseAbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\PageBundle\Model\SiteInterface;
 use Sonata\PageBundle\Model\SiteManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Doctrine\ORM\PersistentCollection;
 
 abstract class AbstractAdmin extends BaseAbstractAdmin
@@ -133,7 +133,7 @@ abstract class AbstractAdmin extends BaseAbstractAdmin
     /**
      * Get site in create/edit view
      *
-     * @return SiteInterface
+     * @return SiteInterface|false
      */
     protected function prepareMultisite()
     {
@@ -151,7 +151,10 @@ abstract class AbstractAdmin extends BaseAbstractAdmin
         $siteId = (null !== $siteId) ? $siteId : $this->getRequest()->get('siteId');
 
         if ($siteId) {
-            $site = $this->getConfigurationPool()->getContainer()->get('sonata.page.manager.site')->findOneBy(['id' => $siteId]);
+            $site = $this->getConfigurationPool()
+                ->getContainer()
+                ->get('sonata.page.manager.site')
+                ->findOneBy(['id' => $siteId]);
 
             if (!$site) {
                 throw new \RuntimeException('Unable to find the site with id=' . $this->getRequest()->get('siteId'));
@@ -213,8 +216,8 @@ abstract class AbstractAdmin extends BaseAbstractAdmin
     protected function prepareOldObjectDataFromObject($object, $oldObject)
     {
         $container = $this->getConfigurationPool()->getContainer();
-        $em = $container->get('doctrine.orm.entity_manager');
-        $original = $em->getUnitOfWork()->getOriginalEntityData($object);
+        $entityManager = $container->get('doctrine.orm.entity_manager');
+        $original = $entityManager->getUnitOfWork()->getOriginalEntityData($object);
 
         foreach ($original as $key => $value) {
             $methodName = 'set' . ucfirst($key);

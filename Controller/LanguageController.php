@@ -2,7 +2,6 @@
 
 namespace Awaresoft\Sonata\AdminBundle\Controller;
 
-use Application\Sonata\PageBundle\Site\HostPathByLocaleSiteSelector;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,5 +32,4 @@ class LanguageController extends Controller
 
         return $this->redirect($siteSelector->getRequestContext()->getBaseUrl() . $request->headers->get('referer'));
     }
-
 }
