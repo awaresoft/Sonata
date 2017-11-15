@@ -60,30 +60,35 @@
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ path('admin_awaresoft_cms_edit', {'id': sonata_page.cmsManager.currentPage.id }) }}" target="_new">{{ "header.edit_page"|trans({}, 'SonataPageBundle') }}</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ path('admin_awaresoft_cms_admin_awaresoft_cms_snapshot_create', {'id': sonata_page.cmsManager.currentPage.id }) }}" target="_new">{{ "header.create_snapshot"|trans({}, 'SonataPageBundle') }}</a>
-                                    </li>
-                                    <li class="divider hidden-xs"></li>
+                                    {% if sonata_page.cmsManager.currentPage.inCms %}
+                                        <li>
+                                            <a href="{{ path('admin_awaresoft_cms_edit', {'id': sonata_page.cmsManager.currentPage.id }) }}" target="_new">{{ "header.edit_page"|trans({}, 'SonataPageBundle') }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('admin_awaresoft_cms_admin_awaresoft_cms_snapshot_create', {'id': sonata_page.cmsManager.currentPage.id }) }}" target="_new">{{ "header.create_snapshot"|trans({}, 'SonataPageBundle') }}</a>
+                                        </li>
+                                        <li class="divider hidden-xs"></li>
+                                    {% endif %}
 
                                     <li>
                                         <a href="{{ path('admin_awaresoft_cms_list') }}" target="_new">{{ "header.view_all_pages"|trans({}, 'SonataPageBundle') }}</a>
                                     </li>
                                     <li class="divider hidden-xs"></li>
+
                                     <li>
                                         <a href="{{ path('sonata_page_exceptions_list') }}" target="_new">{{ "header.view_all_exceptions"|trans({}, 'SonataPageBundle') }}</a>
                                     </li>
                                 </ul>
                             </li>
 
-                            <li>
-                                <a href="{{ url('admin_awaresoft_cms_compose', {'id': sonata_page.cmsManager.currentPage.id}) }}">
-                                    <i class="fa fa-magic"></i>
-                                    {{ 'header.compose_page'|trans({}, 'SonataPageBundle') }}
-                                </a>
-                            </li>
+                            {% if sonata_page.cmsManager.currentPage.inCms %}
+                                <li>
+                                    <a href="{{ url('admin_awaresoft_cms_compose', {'id': sonata_page.cmsManager.currentPage.id}) }}">
+                                        <i class="fa fa-magic"></i>
+                                        {{ 'header.compose_page'|trans({}, 'SonataPageBundle') }}
+                                    </a>
+                                </li>
+                            {% endif %}
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
