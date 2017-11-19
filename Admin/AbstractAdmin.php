@@ -194,7 +194,7 @@ abstract class AbstractAdmin extends BaseAbstractAdmin
 
         $datagridMapper->add('site', 'doctrine_orm_choice', [], 'choice', [
             'choices' => $choices,
-            'empty_value' => $this->trans('all', [], 'AwaresoftSonataAdminBundle'),
+            'empty_data' => $this->trans('all', [], 'AwaresoftSonataAdminBundle'),
             'choice_attr' => [
                 $selectedId => [
                     'selected' => true,
