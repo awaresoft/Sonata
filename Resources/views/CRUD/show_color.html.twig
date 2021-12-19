@@ -1,9 +1,0 @@
-{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
-
-{% block field %}
-    {% set color = "ffffff" %}
-    {%- if value is not empty -%}
-        {% set color = value %}
-    {%- endif -%}
-    <div style="width: 30px; height: 30px; background-color: #{{ color }}" title="#{{ color }}"></div>
-{% endblock %}

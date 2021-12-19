@@ -6,7 +6,10 @@ use Awaresoft\Sonata\AdminBundle\Admin\AbstractAdmin as AwaresoftAbstractAdmin;
 use Awaresoft\TreeBundle\Admin\AbstractTreeAdmin as AwaresoftAbstractTreeAdmin;
 use Doctrine\ORM\QueryBuilder;
 use Sonata\AdminBundle\Controller\CRUDController as BaseCRUDController;
+use Sonata\AdminBundle\Templating\TemplateRegistryInterface;
 use Sonata\PageBundle\Model\SiteInterface;
+use Symfony\Component\Form\FormRenderer;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +23,26 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class CRUDController extends BaseCRUDController
 {
+    /**
+     * The template registry of the related Admin class.
+     *
+     * @var TemplateRegistryInterface
+     */
+    private $templateRegistry;
+    
+    public function configure()
+    {
+        parent::configureAdmin($this->getRequest());
+    
+        $this->templateRegistry = $this->container->get($this->admin->getCode().'.template_registry');
+        if (!$this->templateRegistry instanceof TemplateRegistryInterface) {
+            throw new \RuntimeException(sprintf(
+                'Unable to find the template registry related to the current admin (%s)',
+                $this->admin->getCode()
+            ));
+        }
+    }
+    
     /**
      * @inheritdoc
      */
@@ -67,11 +90,11 @@ class CRUDController extends BaseCRUDController
         $elements = $this->findTreeElements($currentSite);
         $datagrid = $this->admin->getDatagrid();
         $formView = $datagrid->getForm()->createView();
-        $treeTemplate = $this->admin->getTemplate('tree') ?: 'AwaresoftTreeBundle:CRUD:base_tree.html.twig';
+        $treeTemplate = $this->templateRegistry->getTemplate('tree') ?: 'AwaresoftTreeBundle:CRUD:base_tree.html.twig';
+    
+        $this->setFormTheme($formView, $this->admin->getFilterTheme());
 
-        $this->get('twig')->getExtension('form')->renderer->setTheme($formView, $this->admin->getFilterTheme());
-
-        return $this->render($treeTemplate, [
+        return $this->renderWithExtraParams($treeTemplate, [
             'action' => 'tree',
             'multisite' => $this->admin->getMultisite(),
             'sites' => $sites,
@@ -153,7 +176,7 @@ class CRUDController extends BaseCRUDController
                 $current = false;
             }
 
-            return $this->render('AwaresoftSonataAdminBundle:CRUD:select_site.html.twig', [
+            return $this->renderWithExtraParams('AwaresoftSonataAdminBundle:CRUD:select_site.html.twig', [
                 'sites' => $sites,
                 'current' => $current,
             ]);
@@ -209,9 +232,9 @@ class CRUDController extends BaseCRUDController
         $formView = $datagrid->getForm()->createView();
 
         // set the theme for the current Admin Form
-        $this->get('twig')->getExtension('form')->renderer->setTheme($formView, $this->admin->getFilterTheme());
+        $this->setFormTheme($formView, $this->admin->getFilterTheme());
 
-        return $this->render('AwaresoftSonataAdminBundle:CRUD:list_multisite.html.twig', [
+        return $this->renderWithExtraParams('AwaresoftSonataAdminBundle:CRUD:list_multisite.html.twig', [
             'action' => 'list',
             'sites' => $sites,
             'currentSite' => $currentSite,
@@ -245,5 +268,15 @@ class CRUDController extends BaseCRUDController
         $qb->orderBy('o.left', 'ASC');
 
         return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Sets the admin form theme to form view. Used for compatibility between Symfony versions.
+     */
+    protected function setFormTheme(FormView $formView, array $theme = null): void
+    {
+        $twig = $this->get('twig');
+
+        $twig->getRuntime(FormRenderer::class)->setTheme($formView, $theme);
     }
 }

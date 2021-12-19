@@ -5,7 +5,7 @@ namespace Awaresoft\Sonata\AdminBundle\Form\Extension\Field\Type;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\AdminBundle\Form\Extension\Field\Type\FormTypeFieldExtension as BaseFormTypeFieldExtension;
 use Gedmo\Translatable\TranslatableListener;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;

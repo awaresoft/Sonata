@@ -3,13 +3,15 @@
     "type": "symfony-bundle",
     "description": "Symfony Awaresoft SonataAdminBundle",
     "require": {
-        "php": ">= 7",
-        "symfony/symfony": "3.*",
-        "stof/doctrine-extensions-bundle": "v1.2.*"
+        "php": ">= 7.4",
+        "symfony/symfony": ">= 4.4",
+        "stof/doctrine-extensions-bundle": "^1.7"
     },
     "autoload": {
         "psr-4": {
-            "Awaresoft\\Sonata\\AdminBundle\\": ""
+            "Awaresoft\\Sonata\\AdminBundle\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
